@@ -54,18 +54,18 @@ In this part, if "Random" is set to true, the system will take a reward from the
   }
 ```
 
-* **authLevel** is for both console commands eventon & eventoff, if you set it to 1, all user with auth level 1 and 2 will have access to command.
-* **AutoStart** if set to true, the event will auto start at reload.
-* **Block clans kill reward** if set to 1 and clans is loaded, clan kill reward will be blocked.
-* **Block friends kill reward** if set to 1 and clans is loaded, friend kill reward will be blocked.
-* **ChatName** is the name that appear infront of each message from lang file.
-* **Count** is the minimum players needed to launch the event.
+* **authLevel** is for both console commands eventon & eventoff, if you set it to 1, all users with auth levels 1 and 2 will have access to the command.
+* **AutoStart** If set to true, the event will auto-start at reload.
+* **Block clans kill reward** If set to 1 and clans are loaded, clan kill reward will be blocked.
+* **Block friends kill reward** If set to 1 and clans are loaded, the friend kills reward will be blocked.
+* **ChatName** is the name that appears in front of each message from the lang file.
+* **Count** is the minimum number of  players needed to launch the event.
 * **DisconnectPendingTimer** timer length, enabled when a runner is getting disconnect.
-* **AutoStart** if set to true will start the timer after a plugin reload or after a restart.
-* **Display Distance** is here to allow owner to display or not distance for the command /run.
+* **AutoStart** if set to true will start the timer after a plugin reloads or after a restart.
+* **Display Distance** is here to allow the owner to display or not distance for the command /run.
 * **Excluded auth level** to exclude moderator and admin set to 1, to exclude admin set to 2, to include everyone set to 0.
-* **PauseeventTime** is the waiting time between 2 event (in minutes).
-* **StarteventTime** is the time a player have to kill the runner, if runner isn't killed after this delay he will receive a reward (in minutes).
+* **PauseeventTime** is the waiting time between 2 events (in minutes).
+* **StarteventTime** is the time a player has to kill the runner, if the runner isn't killed after this delay he will receive a reward (in minutes).
 
 ```json
   "TimeRange": {
@@ -75,7 +75,7 @@ In this part, if "Random" is set to true, the system will take a reward from the
   }
 ```
 
-* **TimeRange** Config for time range, used to allow event between start and end time
+* **TimeRange** Config for time range, used to allow events between start and end time
 * **Enable Time Range** Used to enable the restriction.
 
 ```json
@@ -97,15 +97,15 @@ In this part, if "Random" is set to true, the system will take a reward from the
   }
 ```
 
-* **CompassUI Info** * Compass placement and dicretion words
+* **CompassUI Info** * Compass placement and direction words
 * **Countdown** * Countdown UI placement
-* **Disable while event is off** * When set to true, disable the compass if there is no event running 
+* **Disable while the event is off** * When set to true, disable the compass if there is no event running 
 
 ## Stored Data
 
 Rewards are stored in `data/RunningMan.json`. Deleting this file would wipe all rewards.
 
-If you want to edit item to runner list, just change k to r from the first arg. 
+If you want to edit an item to the runner list, just change k to r from the first arg. 
 
 ```json
 {
@@ -206,7 +206,7 @@ If you want to edit item to runner list, just change k to r from the first arg.
   "AdminCommandHelp": "Use \"/eventon\" for start event Running Man\nUse \"/eventoff\" for start event Running Man",
   "AdminAddCommandHelp": "Use \"/running add <Package Name> <ItemName or money or karma> <MinAmount> <MaxAmount>\" to add item.",
   "AdminRemoveCommandHelp": "Use \"/running remove <PackageName> <ItemName or karma or money>\" to remove item.",
-  "NobodyOnline": "<color=#C4FF00>{0}</color>: You can't run event while there is nobody online",
+  "NobodyOnline": "<color=#C4FF00>{0}</color>: You can't run an event while there is nobody online",
   "NoPerm": "<color=#C4FF00>{0}</color>: You have no rights to do this!",
   "RunnerLeaved": "<color=#C4FF00>{0}</color>: {1} got scared and ran away!",
   "EventStopped": "<color=#C4FF00>{0}</color>: Event has stopped!",
