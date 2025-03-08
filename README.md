@@ -1,194 +1,141 @@
-Randomly selects a player, his task is to survive for a certain time. The task remaining is to kill him. The winner gets a reward.
+
+# Running Man Event
+
+The "Running Man" event randomly selects a player, whose task is to survive for a certain period. Other players are tasked with killing the runner before time runs out. The player who kills the runner will receive a reward.
 
 ## Permissions
 
-- `runningman.admin` -- Allows use of the admin commands
+- **`runningman.admin`**: Grants the user access to admin commands.
 
 ## Chat Commands
 
 ### Admin Commands
 
-- `/eventon <PlayerName/PlayerID>` -- Start the running man *(required special rights depend on what you set on config file)* PlayerName/PlayerID is optional
-- `/eventoff` -- Start the running man *(required special rights depend on what you set on config file)*
-- `/running <k|killer> add <Package Name> <ItemName or money or karma> <MinAmount> <MaxAmount>` -- Create package if not exist and add item
-- `/running <k|killer> remove <PackageName> <ItemName or karma or money>` -- Remove item from a package
+- `/eventon <PlayerName/PlayerID>`: Starts the Running Man event for the specified player. *(Requires special rights as configured)*
+- `/eventoff`: Stops the Running Man event. *(Requires special rights as configured)*
+- `/running <k|killer> add <PackageName> <ItemName|money|karma> <MinAmount> <MaxAmount>`: Creates a new package or adds an item to an existing package.
+- `/running <k|killer> remove <PackageName> <ItemName|karma|money>`: Removes an item from a package.
 
 ### Player Commands
 
-- `/run` -- Show the status of the event
+- `/run`: Displays the current status of the event.
 
 ## Console Commands
 
-- `eventon` -- Start the running man *(requires admin access)*
-- `eventoff` -- Stop the running man *(requires admin access)*
+- `eventon`: Starts the Running Man event. *(Requires admin access)*
+- `eventoff`: Stops the Running Man event. *(Requires admin access)*
 
 ## Configuration
 
+### Reward Settings
+
 ```json
-  "Reward": {
-    "Random": true,
-    "RewardFixing": "wood",
-    "RewardFixingAmount": 10000,
-    "KarmaSystem": {
-      "PointToRemove": 0,
-      "PointToAdd": 1
-    }
+"Reward": {
+  "Random": true,
+  "RewardFixing": "wood",
+  "RewardFixingAmount": 10000,
+  "KarmaSystem": {
+    "PointToRemove": 0,
+    "PointToAdd": 1
   }
+}
 ```
 
-In this part, if "Random" is set to true, the system will take a reward from the data file list, if it is set to false it will use the "RewardFixing" and "RewardFixingAmount".
+- **Random**: If `true`, a random reward is selected from a predefined list. If `false`, the fixed reward (e.g., wood) is given.
+- **RewardFixing**: Defines the fixed reward type (e.g., "wood").
+- **RewardFixingAmount**: Defines the amount for the fixed reward.
+- **KarmaSystem**: Defines the points added or removed based on karma actions.
+
+### Event Settings
 
 ```json
-  "Default": {
-    "ChatName": "EVENT",
-    "authLevel": 1,
-    "AutoStart": true,
-    "Display Distance": true,
-    "Count": 2,
-    "StarteventTime": 30,
-    "PauseeventTime": 30,
-    "DisconnectPendingTimer": 30,
-    "Excluded auth level": 1,
-    "Block friends kill reward": true,
-    "Block clans kill reward": true
-  }
+"Default": {
+  "ChatName": "EVENT",
+  "authLevel": 1,
+  "AutoStart": true,
+  "Display Distance": true,
+  "Count": 2,
+  "StarteventTime": 30,
+  "PauseeventTime": 30,
+  "DisconnectPendingTimer": 30,
+  "Excluded auth level": 1,
+  "Block friends kill reward": true,
+  "Block clans kill reward": true
+}
 ```
 
-* **authLevel** is for both console commands eventon & eventoff, if you set it to 1, all users with auth levels 1 and 2 will have access to the command.
-* **AutoStart** If set to true, the event will auto-start at reload.
-* **Block clans kill reward** If set to 1 and clans are loaded, clan kill reward will be blocked.
-* **Block friends kill reward** If set to 1 and clans are loaded, the friend kills reward will be blocked.
-* **ChatName** is the name that appears in front of each message from the lang file.
-* **Count** is the minimum number of  players needed to launch the event.
-* **DisconnectPendingTimer** timer length, enabled when a runner is getting disconnect.
-* **AutoStart** if set to true will start the timer after a plugin reloads or after a restart.
-* **Display Distance** is here to allow the owner to display or not distance for the command /run.
-* **Excluded auth level** to exclude moderator and admin set to 1, to exclude admin set to 2, to include everyone set to 0.
-* **PauseeventTime** is the waiting time between 2 events (in minutes).
-* **StarteventTime** is the time a player has to kill the runner, if the runner isn't killed after this delay he will receive a reward (in minutes).
+- **authLevel**: Sets the required authorization level to execute `/eventon` and `/eventoff` commands.
+- **AutoStart**: If `true`, the event auto-starts when the plugin reloads or the server restarts.
+- **Count**: Minimum number of players needed to start the event.
+- **StarteventTime**: Time limit (in minutes) for the runner to survive before receiving a reward.
+- **PauseeventTime**: Time (in minutes) between two consecutive events.
+- **Display Distance**: If `true`, displays the distance to the runner using the `/run` command.
+
+### Time Range Configuration
 
 ```json
-  "TimeRange": {
-    "Start War Time": 18,
-    "End War Time": 8,
-    "Enable Time Range": false
-  }
+"TimeRange": {
+  "Start War Time": 18,
+  "End War Time": 8,
+  "Enable Time Range": false
+}
 ```
 
-* **TimeRange** Config for time range, used to allow events between start and end time
-* **Enable Time Range** Used to enable the restriction.
+- **Enable Time Range**: If `true`, limits the event to specific times (between `Start War Time` and `End War Time`).
+
+### Compass UI Settings
 
 ```json
-  "CompassUI Info": {
-    "AnchorMin": "0.03 0.067",
-    "AnchorMax": "0.05 0.09",
-    "Direction": {
-      "North East": "N-E",
-      "South East": "S-E",
-      "North West": "N-W",
-      "South West": "S-W",
-      "No runner": "/"
-    },
-    "Disable while event is off": false
+"CompassUI Info": {
+  "AnchorMin": "0.03 0.067",
+  "AnchorMax": "0.05 0.09",
+  "Direction": {
+    "North East": "N-E",
+    "South East": "S-E",
+    "North West": "N-W",
+    "South West": "S-W",
+    "No runner": "/"
   },
-  "Countdown Info": {
-    "AnchorMin": "0.93 0.93",
-    "AnchorMax": "1 1"
-  }
+  "Disable while event is off": false
+},
+"Countdown Info": {
+  "AnchorMin": "0.93 0.93",
+  "AnchorMax": "1 1"
+}
 ```
 
-* **CompassUI Info** * Compass placement and direction words
-* **Countdown** * Countdown UI placement
-* **Disable while the event is off** * When set to true, disable the compass if there is no event running 
+- **CompassUI Info**: Defines compass UI settings, including placement and directions.
+- **Disable while event is off**: If `true`, the compass is disabled when the event is not running.
+- **Countdown Info**: Defines the UI position for the countdown.
 
 ## Stored Data
 
-Rewards are stored in `data/RunningMan.json`. Deleting this file would wipe all rewards.
+Rewards are stored in `data/RunningMan.json`. Deleting this file will remove all saved rewards.
 
-If you want to edit an item to the runner list, just change k to r from the first arg. 
+To edit an item in the runner's list, replace `k` with `r` in the first argument.
+
+### Example Stored Data Structure
 
 ```json
 {
   "runner": {
-    "Karma": {
-      "RewardItems": {
-        "Karma": {
-          "MinValue": 0,
-          "MaxValue": 1
-        }
-      }
-    },
-    "Money": {
-      "RewardItems": {
-        "Money": {
-          "MinValue": 100,
-          "MaxValue": 1000
-        }
-      }
-    },
-    "ServerReward": {
-      "RewardItems": {
-        "serverreward": {
-          "MinValue": 0,
-          "MaxValue": 1
-        }
-      }
-    },
-    "build": {
-      "RewardItems": {
-        "wood": {
-          "MinValue": 1000,
-          "MaxValue": 10000
-        },
-        "stones": {
-          "MinValue": 1000,
-          "MaxValue": 10000
-        }
-      }
-    }
+    "Karma": { "RewardItems": { "Karma": { "MinValue": 0, "MaxValue": 1 } } },
+    "Money": { "RewardItems": { "Money": { "MinValue": 100, "MaxValue": 1000 } } },
+    "ServerReward": { "RewardItems": { "serverreward": { "MinValue": 0, "MaxValue": 1 } } },
+    "build": { "RewardItems": { "wood": { "MinValue": 1000, "MaxValue": 10000 }, "stones": { "MinValue": 1000, "MaxValue": 10000 } } }
   },
   "killer": {
-    "Karma": {
-      "RewardItems": {
-        "Karma": {
-          "MinValue": 0,
-          "MaxValue": 1
-        }
-      }
-    },
-    "Money": {
-      "RewardItems": {
-        "Money": {
-          "MinValue": 100,
-          "MaxValue": 1000
-        }
-      }
-    },
-    "ServerReward": {
-      "RewardItems": {
-        "serverreward": {
-          "MinValue": 0,
-          "MaxValue": 1
-        }
-      }
-    },
-    "build": {
-      "RewardItems": {
-        "wood": {
-          "MinValue": 1000,
-          "MaxValue": 10000
-        },
-        "stones": {
-          "MinValue": 1000,
-          "MaxValue": 10000
-        }
-      }
-    }
+    "Karma": { "RewardItems": { "Karma": { "MinValue": 0, "MaxValue": 1 } } },
+    "Money": { "RewardItems": { "Money": { "MinValue": 100, "MaxValue": 1000 } } },
+    "ServerReward": { "RewardItems": { "serverreward": { "MinValue": 0, "MaxValue": 1 } } },
+    "build": { "RewardItems": { "wood": { "MinValue": 1000, "MaxValue": 10000 }, "stones": { "MinValue": 1000, "MaxValue": 10000 } } }
   }
 }
 ```
 
 ## Localization
+
+Customizable language strings for various events:
 
 ```json
 {
@@ -219,3 +166,4 @@ If you want to edit an item to the runner list, just change k to r from the firs
   "Rewarded": "<color=#C4FF00>{0}</color>: You won a reward : {1}."
 }
 ```
+
